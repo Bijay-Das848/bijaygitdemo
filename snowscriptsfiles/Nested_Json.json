@@ -1,0 +1,58 @@
+{
+  "company": "TechVanguard Solutions",
+  "established": 2018,
+  "active": true,
+  "location": {
+    "country": "United States",
+    "state": "California",
+    "city": "San Francisco",
+    "coordinates": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  },
+  "departments": [
+    {
+      "name": "Engineering",
+      "budget": 250000,
+      "manager": {
+        "name": "Sarah Jenkins",
+        "email": "s.jenkins@techvanguard.io"
+      },
+      "projects": [
+        {
+          "id": "PRJ-001",
+          "title": "Quantum DB",
+          "status": "In Progress",
+          "technologies": ["Rust", "PostgreSQL", "AWS"]
+        },
+        {
+          "id": "PRJ-002",
+          "title": "Nova UI Toolkit",
+          "status": "Completed",
+          "technologies": ["TypeScript", "React", "Tailwind"]
+        }
+      ]
+    },
+    {
+      "name": "Data Science & AI",
+      "budget": 185000,
+      "manager": {
+        "name": "Dr. Alex Chen",
+        "email": "a.chen@techvanguard.io"
+      },
+      "projects": [
+        {
+          "id": "PRJ-089",
+          "title": "Predictive Churn Engine",
+          "status": "Planning",
+          "technologies": ["Python", "PyTorch", "Snowflake"]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "2.4.1",
+    "environment": "Production"
+  }
+}

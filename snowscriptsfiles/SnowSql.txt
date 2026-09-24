@@ -1,0 +1,992 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\BIJAY DAS>snowsql -v
+Version: 1.5.1
+
+C:\Users\BIJAY DAS>snowsql -a URSUXCZ-DW33045 -u BIJU1994
+Password:
+* SnowSQL * v1.5.1
+Type SQL statements or !help
+BIJU1994#COMPUTE_WH@(no database).(no schema)>show DATABASES;
++-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------+
+| created_on                    | name                  | is_default | is_current | origin                                               | owner        | comment                                                               | options | retention_time | kind              | owner_role_type | object_visibility | data_quality_monitoring_settings | resharing_settings |
+|-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------|
+| 2026-09-11 08:10:28.984 -0700 | DEMOPROJECTDATA       | N          | N          |                                                      | ACCOUNTADMIN |                                                                       |         | 1              | STANDARD          | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:08.465 -0700 | SNOWFLAKE             | N          | N          | SNOWFLAKE.ACCOUNT_USAGE                              |              |                                                                       |         | 0              | APPLICATION       |                 | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:13.421 -0700 | SNOWFLAKE_LEARNING_DB | N          | N          |                                                      | ACCOUNTADMIN | Created by Snowflake during account provisioning                      |         | 1              | STANDARD          | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:12.933 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFSALESSHARED.SFC_SAMPLES_AZCENTRALINDIA.SAMPLE_DATA | ACCOUNTADMIN | Preloaded TPCH Data provided by Snowflake during account provisioning |         | 0              | IMPORTED DATABASE | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:58:21.993 -0700 | USER$BIJU1994         | N          | N          |                                                      |              |                                                                       |         | 1              | PERSONAL DATABASE |                 | NULL              | NULL                             | NULL               |
++-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------+
+5 Row(s) produced. Time Elapsed: 0.326s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>show TABLES;
++-------------------------------+-------------------------------------+-----------------------+----------------+-------+-----------------------------------+-------------------------------------------+--------------+----------------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+| created_on                    | name                                | database_name         | schema_name    | kind  | comment                           | cluster_by                                |         rows |          bytes | owner        | retention_time | automatic_clustering | change_tracking | search_optimization | search_optimization_progress | search_optimization_bytes | is_external | enable_schema_evolution | owner_role_type | is_event | is_hybrid | is_iceberg | is_dynamic | is_immutable | is_interactive | row_timestamp | error_logging |
+|-------------------------------+-------------------------------------+-----------------------+----------------+-------+-----------------------------------+-------------------------------------------+--------------+----------------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------|
+| 2026-09-14 00:57:27.256 -0700 | ACCOUNT_TABLE                       | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            6 |           1536 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-13 00:47:26.699 -0700 | AMZ_COUNTRY                         | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            4 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-14 02:41:56.259 -0700 | BALANCETBL                          | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            9 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 09:07:30.551 -0700 | CLASS1                              | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           15 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 09:24:38.763 -0700 | CLASS2                              | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           15 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:31.190 -0700 | CUSTOMERS                           | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |          100 |           9216 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:32.019 -0700 | DATES                               | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |          365 |           3072 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:33.005 -0700 | EMPLOYEES                           | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |          101 |           7680 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-16 02:18:19.389 -0700 | EMPLOYEE_2                          | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           12 |           1536 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-16 01:46:27.171 -0700 | EMPLOYEE_DETAILS                    | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            5 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 10:25:21.265 -0700 | EMP_DETAILS                         | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           11 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-13 01:12:50.608 -0700 | MATCH_RESULT                        | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            6 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:36.558 -0700 | ORDERITEMS                          | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |         1651 |          16384 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:37.454 -0700 | ORDERS                              | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |          300 |           5120 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-12 04:12:41.495 -0700 | ORDER_DETAILS                       | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            3 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-16 09:17:58.139 -0700 | ORDER_SUMMARY                       | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           43 |           2048 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-12 01:51:51.582 -0700 | ORDER_TBL                           | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           10 |           1536 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:33.974 -0700 | PRODUCTS                            | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |          200 |           5120 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-13 04:19:00.674 -0700 | SALESTBL                            | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            9 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 11:54:48.710 -0700 | SAMPLE_TABLE                        | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            9 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:35.741 -0700 | STORES                              | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           10 |           2560 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-12 01:07:55.337 -0700 | STUDENT                             | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            9 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-14 02:01:25.090 -0700 | STUDENTINFO                         | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            3 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:10:34.928 -0700 | SUPPLIERS                           | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |           20 |           3584 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-13 00:29:30.985 -0700 | TBL_EMPLOYEE                        | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            7 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-13 03:37:53.301 -0700 | TRANSACTION_TABLE                   | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            7 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:41:36.636 -0700 | TRANSACTION_TBL                     | DEMOPROJECTDATA       | L1_LANDING     | TABLE |                                   |                                           |            7 |           1024 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-19 02:16:06.480 -0700 | CSV_DATA                            | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |           43 |           2048 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-17 02:44:25.054 -0700 | JSONDATA                            | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |            1 |           6144 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-18 07:57:57.298 -0700 | NESTED_JSON_DATA                    | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |            1 |           3072 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-18 01:20:46.846 -0700 | NESTED_XML_DATA                     | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |            1 |           3072 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-19 00:50:18.505 -0700 | PARQUET_DATA                        | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |          891 |          31232 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-17 02:55:48.068 -0700 | XMLDATA                             | DEMOPROJECTDATA       | RAW_DATA       | TABLE |                                   |                                           |            1 |           2048 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:04:16.453 -0700 | AI_OBSERVABILITY_EVENTS             | SNOWFLAKE             | LOCAL          | TABLE |                                   |                                           |           10 |          18944 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 07:57:26.306 -0700 | CORTEX_ANALYST_REQUESTS_RAW         | SNOWFLAKE             | LOCAL          | TABLE |                                   |                                           |            0 |              0 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 07:57:20.902 -0700 | DATA_QUALITY_MONITORING_LOGS_RAW    | SNOWFLAKE             | LOCAL          | TABLE |                                   |                                           |            0 |              0 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 07:57:03.191 -0700 | DATA_QUALITY_MONITORING_RESULTS_RAW | SNOWFLAKE             | LOCAL          | TABLE |                                   |                                           |            0 |              0 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:05:43.718 -0700 | PROFILER_EVENTS_RAW                 | SNOWFLAKE             | LOCAL          | TABLE |                                   |                                           |            0 |              0 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2026-09-11 08:00:42.682 -0700 | EVENTS                              | SNOWFLAKE             | TELEMETRY      | TABLE |                                   |                                           |            0 |              0 | SNOWFLAKE    | 1              | OFF                  | ON              | OFF                 |                         NULL |                      NULL | N           | N                       | APPLICATION     | Y        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.195 -0700 | CALL_CENTER                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( cc_call_center_sk )               |           60 |          18944 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.155 -0700 | CATALOG_PAGE                        | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( cp_catalog_page_sk )              |        50000 |        2794496 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.208 -0700 | CATALOG_RETURNS                     | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( cr_returned_date_sk, cr_item_sk ) |  14405363575 |   827709382656 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.192 -0700 | CATALOG_SALES                       | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR(  cs_sold_date_sk, cs_item_sk  )   | 144006767158 | 10152218613760 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.029 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( c_customer_sk )                   |    100000000 |     3602470912 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.030 -0700 | CUSTOMER_ADDRESS                    | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( ca_address_sk )                   |     50000000 |     1719176192 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.071 -0700 | CUSTOMER_DEMOGRAPHICS               | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( cd_demo_sk )                      |      1920800 |        9931264 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.052 -0700 | DATE_DIM                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( d_date_sk )                       |        73049 |        2138624 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.126 -0700 | HOUSEHOLD_DEMOGRAPHICS              | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( hd_demo_sk )                      |         7200 |          30720 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.116 -0700 | INCOME_BAND                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( ib_income_band_sk )               |           20 |           1536 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.123 -0700 | INVENTORY                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( inv_date_sk, inv_item_sk )        |   1965337830 |     7860790272 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.107 -0700 | ITEM                                | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( i_item_sk )                       |       502000 |       33434112 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.969 -0700 | PROMOTION                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( p_promo_sk )                      |         2500 |         104448 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.016 -0700 | REASON                              | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( r_reason_sk )                     |           75 |           2560 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.993 -0700 | SHIP_MODE                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( sm_ship_mode_sk )                 |           20 |           3072 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.988 -0700 | STORE                               | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( s_store_sk )                      |         1902 |         170496 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.992 -0700 | STORE_RETURNS                       | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( sr_returned_date_sk, sr_item_sk ) |  28794603867 |  1002743521792 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.969 -0700 | STORE_SALES                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR(  ss_sold_date_sk, ss_item_sk  )   | 288010550524 | 11401692813824 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.056 -0700 | TIME_DIM                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( t_time_sk )                       |        86400 |        1123840 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.078 -0700 | WAREHOUSE                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( w_warehouse_sk )                  |           30 |           7680 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.968 -0700 | WEB_PAGE                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( wp_web_page_sk )                  |         5004 |          78848 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.016 -0700 | WEB_RETURNS                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( wr_returned_date_sk, wr_item_sk ) |   7200334357 |   379811339776 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.017 -0700 | WEB_SALES                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR(  ws_sold_date_sk, ws_item_sk  )   |  71997815522 |  5181447891456 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:06.968 -0700 | WEB_SITE                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF100TCL | TABLE |                                   | LINEAR( web_site_sk )                     |           96 |          22528 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.827 -0700 | CALL_CENTER                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( cc_call_center_sk )               |           54 |          18432 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.758 -0700 | CATALOG_PAGE                        | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( cp_catalog_page_sk )              |        40000 |        2235392 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.839 -0700 | CATALOG_RETURNS                     | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( cr_returned_date_sk )             |   1440033112 |    82532796416 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.884 -0700 | CATALOG_SALES                       | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR(  cs_sold_date_sk )                |  14399964710 |   923617475584 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.826 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( c_customer_sk )                   |     65000000 |     2328538624 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.918 -0700 | CUSTOMER_ADDRESS                    | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( ca_address_sk )                   |     32500000 |      776454656 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.803 -0700 | CUSTOMER_DEMOGRAPHICS               | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( cd_demo_sk )                      |      1920800 |        7446528 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.820 -0700 | DATE_DIM                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( d_date_sk )                       |        73049 |        2138624 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.854 -0700 | HOUSEHOLD_DEMOGRAPHICS              | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( hd_demo_sk )                      |         7200 |          30720 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.890 -0700 | INCOME_BAND                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( ib_income_band_sk )               |           20 |           1536 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.759 -0700 | INVENTORY                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( inv_date_sk )                     |   1311525000 |     3658746880 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.863 -0700 | ITEM                                | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( i_item_sk )                       |       402000 |       23811584 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.797 -0700 | PROMOTION                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( p_promo_sk )                      |         2000 |          85504 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.914 -0700 | REASON                              | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( r_reason_sk )                     |           70 |           2560 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.760 -0700 | SHIP_MODE                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( sm_ship_mode_sk )                 |           20 |           3072 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.840 -0700 | STORE                               | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( s_store_sk )                      |         1500 |         135680 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.938 -0700 | STORE_RETURNS                       | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( sr_returned_date_sk )             |   2879898629 |   124763446272 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.879 -0700 | STORE_SALES                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR(  ss_sold_date_sk )                |  28800239865 |  1251924090880 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.869 -0700 | TIME_DIM                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( t_time_sk )                       |        86400 |        1124352 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.907 -0700 | WAREHOUSE                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( w_warehouse_sk )                  |           25 |           7168 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.848 -0700 | WEB_PAGE                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( wp_web_page_sk )                  |         4002 |          63488 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.759 -0700 | WEB_RETURNS                         | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( wr_returned_date_sk )             |    720020485 |    39149218304 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.910 -0700 | WEB_SALES                           | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR(  ws_sold_date_sk  )               |   7199963324 |   461041485824 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2023-09-05 19:02:34.867 -0700 | WEB_SITE                            | SNOWFLAKE_SAMPLE_DATA | TPCDS_SF10TCL  | TABLE |                                   | LINEAR( web_site_sk )                     |           78 |          20992 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.687 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Customer data as defined by TPC-H |                                           |       150000 |       10747904 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.935 -0700 | LINEITEM                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Lineitem data as defined by TPC-H |                                           |      6001215 |      165228544 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.953 -0700 | NATION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Nation data as defined by TPC-H   |                                           |           25 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.921 -0700 | ORDERS                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Orders data as defined by TPC-H   |                                           |      1500000 |       42303488 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.898 -0700 | PART                                | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Part data as defined by TPC-H     |                                           |       200000 |        5214208 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.898 -0700 | PARTSUPP                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Partsupp data as defined by TPC-H |                                           |       800000 |       36589568 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.891 -0700 | REGION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Region data as defined by TPC-H   |                                           |            5 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.906 -0700 | SUPPLIER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1       | TABLE | Supplier data as defined by TPC-H |                                           |        10000 |         692224 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.634 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Customer data as defined by TPC-H |                                           |      1500000 |      108249088 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.576 -0700 | LINEITEM                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Lineitem data as defined by TPC-H |                                           |     59986052 |     1717059584 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.646 -0700 | NATION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Nation data as defined by TPC-H   |                                           |           25 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.562 -0700 | ORDERS                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Orders data as defined by TPC-H   |                                           |     15000000 |      446439424 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.743 -0700 | PART                                | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Part data as defined by TPC-H     |                                           |      2000000 |       52776960 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.728 -0700 | PARTSUPP                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Partsupp data as defined by TPC-H |                                           |      8000000 |      373145600 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.807 -0700 | REGION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Region data as defined by TPC-H   |                                           |            5 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.776 -0700 | SUPPLIER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF10      | TABLE | Supplier data as defined by TPC-H |                                           |       100000 |        6791168 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.955 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Customer data as defined by TPC-H |                                           |     15000000 |     1086021632 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.921 -0700 | LINEITEM                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Lineitem data as defined by TPC-H |                                           |    600037902 |    16605777920 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.902 -0700 | NATION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Nation data as defined by TPC-H   |                                           |           25 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.905 -0700 | ORDERS                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Orders data as defined by TPC-H   |                                           |    150000000 |     4645466112 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.618 -0700 | PART                                | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Part data as defined by TPC-H     |                                           |     20000000 |      535998464 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.598 -0700 | PARTSUPP                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Partsupp data as defined by TPC-H |                                           |     80000000 |     3766898688 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.884 -0700 | REGION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Region data as defined by TPC-H   |                                           |            5 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.867 -0700 | SUPPLIER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF100     | TABLE | Supplier data as defined by TPC-H |                                           |      1000000 |       68784128 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:07.136 -0700 | CUSTOMER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Customer data as defined by TPC-H |                                           |    150000000 |    10897580032 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.237 -0700 | LINEITEM                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Lineitem data as defined by TPC-H | LINEAR(L_SHIPDATE)                        |   5999989709 |   171021104640 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.207 -0700 | NATION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Nation data as defined by TPC-H   |                                           |           25 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.203 -0700 | ORDERS                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Orders data as defined by TPC-H   | LINEAR(O_ORDERDATE)                       |   1500000000 |    52199358464 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.190 -0700 | PART                                | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Part data as defined by TPC-H     |                                           |    200000000 |     5408342016 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.152 -0700 | PARTSUPP                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Partsupp data as defined by TPC-H | LINEAR(PS_SUPPKEY)                        |    800000000 |    37656735744 |              | 1              | ON                   | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.453 -0700 | REGION                              | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Region data as defined by TPC-H   |                                           |            5 |           4096 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
+| 2022-05-30 02:46:08.427 -0700 | SUPPLIER                            | SNOWFLAKE_SAMPLE_DATA | TPCH_SF1000    | TABLE | Supplier data as defined by TPC-H |                                           |     10000000 |      691068928 |              | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       |                 | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
++-------------------------------+-------------------------------------+-----------------------+----------------+-------+-----------------------------------+-------------------------------------------+--------------+----------------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+119 Row(s) produced. Time Elapsed: 3.109s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>
+BIJU1994#COMPUTE_WH@(no database).(no schema)>show WAREHOUSES
+                                              ;
++------------------------------+-----------+----------+---------+-------------------+-------------------+------------------+---------+--------+------------+------------+--------------+-------------+-----------+--------------+-----------+-------+-------------------------------+-------------------------------+-------------------------------+--------------+--------------------------------------------------+---------------------------+-------------------------------------+------------------+---------+----------+--------+-----------+-----------+----------------+-----------------+---------------------+------------+-----------------------------+-----------------------------+------------------+--------+
+| name                         | state     | type     | size    | min_cluster_count | max_cluster_count | started_clusters | running | queued | is_default | is_current | auto_suspend | auto_resume | available | provisioning | quiescing | other | created_on                    | resumed_on                    | updated_on                    | owner        | comment                                          | enable_query_acceleration | query_acceleration_max_scale_factor | resource_monitor | actives | pendings | failed | suspended | uuid      | scaling_policy | owner_role_type | resource_constraint | generation | query_throughput_multiplier | max_query_performance_level | disabled_reasons | tables |
+|------------------------------+-----------+----------+---------+-------------------+-------------------+------------------+---------+--------+------------+------------+--------------+-------------+-----------+--------------+-----------+-------+-------------------------------+-------------------------------+-------------------------------+--------------+--------------------------------------------------+---------------------------+-------------------------------------+------------------+---------+----------+--------+-----------+-----------+----------------+-----------------+---------------------+------------+-----------------------------+-----------------------------+------------------+--------|
+| COMPUTE_WH                   | SUSPENDED | STANDARD | X-Small |                 1 |                 1 |                0 |       0 |      0 | Y          | Y          |          300 | true        |           |              |           |       | 2026-09-11 07:58:16.649 -0700 | 2026-09-20 01:00:12.265 -0700 | 2026-09-20 01:00:12.266 -0700 | ACCOUNTADMIN |                                                  | true                      |                                   8 | null             |       0 |        0 |      0 |         1 | 262829652 | STANDARD       | ROLE            | STANDARD_GEN_2      | 2          |                        NULL | NULL                        | NULL             | NULL   |
+| SNOWFLAKE_LEARNING_WH        | SUSPENDED | STANDARD | X-Small |                 1 |                 1 |                0 |       0 |      0 | N          | N          |          300 | true        |           |              |           |       | 2026-09-11 07:56:13.452 -0700 | 2026-09-11 07:56:13.452 -0700 | 2026-09-11 07:56:13.465 -0700 | ACCOUNTADMIN | Created by Snowflake during account provisioning | true                      |                                   8 | null             |       0 |        0 |      0 |         1 | 262829576 | STANDARD       | ROLE            | STANDARD_GEN_2      | 2          |                        NULL | NULL                        | NULL             | NULL   |
+| SYSTEM$STREAMLIT_NOTEBOOK_WH | SUSPENDED | STANDARD | X-Small |                 1 |                10 |                0 |       0 |      0 | N          | N          |           60 | true        |           |              |           |       | 2026-09-11 07:56:11.107 -0700 | 2026-09-11 07:56:11.113 -0700 | 2026-09-11 07:56:11.135 -0700 | ACCOUNTADMIN |                                                  | true                      |                                   8 | null             |       0 |        0 |      0 |         1 | 262829572 | STANDARD       | ROLE            | STANDARD_GEN_2      | 2          |                        NULL | NULL                        | NULL             | NULL   |
++------------------------------+-----------+----------+---------+-------------------+-------------------+------------------+---------+--------+------------+------------+--------------+-------------+-----------+--------------+-----------+-------+-------------------------------+-------------------------------+-------------------------------+--------------+--------------------------------------------------+---------------------------+-------------------------------------+------------------+---------+----------+--------+-----------+-----------+----------------+-----------------+---------------------+------------+-----------------------------+-----------------------------+------------------+--------+
+3 Row(s) produced. Time Elapsed: 0.536s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>CREATE DATABASE SNOWSQL;
++----------------------------------------+
+| status                                 |
+|----------------------------------------|
+| Database SNOWSQL successfully created. |
++----------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.861s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>CREATE SCHEMA Raw_Layer;
++----------------------------------------+
+| status                                 |
+|----------------------------------------|
+| Schema RAW_LAYER successfully created. |
++----------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.189s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>SHOW TABLES;
++------------+------+---------------+-------------+------+---------+------------+------+-------+-------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+| created_on | name | database_name | schema_name | kind | comment | cluster_by | rows | bytes | owner | retention_time | automatic_clustering | change_tracking | search_optimization | search_optimization_progress | search_optimization_bytes | is_external | enable_schema_evolution | owner_role_type | is_event | is_hybrid | is_iceberg | is_dynamic | is_immutable | is_interactive | row_timestamp | error_logging |
+|------------+------+---------------+-------------+------+---------+------------+------+-------+-------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------|
++------------+------+---------------+-------------+------+---------+------------+------+-------+-------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+0 Row(s) produced. Time Elapsed: 0.297s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>show DATABASE;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 13 unexpected ';'.
+BIJU1994#COMPUTE_WH@(no database).(no schema)>show DATABASES;
++-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------+
+| created_on                    | name                  | is_default | is_current | origin                                               | owner        | comment                                                               | options | retention_time | kind              | owner_role_type | object_visibility | data_quality_monitoring_settings | resharing_settings |
+|-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------|
+| 2026-09-11 08:10:28.984 -0700 | DEMOPROJECTDATA       | N          | N          |                                                      | ACCOUNTADMIN |                                                                       |         | 1              | STANDARD          | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:08.465 -0700 | SNOWFLAKE             | N          | N          | SNOWFLAKE.ACCOUNT_USAGE                              |              |                                                                       |         | 0              | APPLICATION       |                 | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:13.421 -0700 | SNOWFLAKE_LEARNING_DB | N          | N          |                                                      | ACCOUNTADMIN | Created by Snowflake during account provisioning                      |         | 1              | STANDARD          | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:56:12.933 -0700 | SNOWFLAKE_SAMPLE_DATA | N          | N          | SFSALESSHARED.SFC_SAMPLES_AZCENTRALINDIA.SAMPLE_DATA | ACCOUNTADMIN | Preloaded TPCH Data provided by Snowflake during account provisioning |         | 0              | IMPORTED DATABASE | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-20 01:55:04.353 -0700 | SNOWSQL               | N          | Y          |                                                      | ACCOUNTADMIN |                                                                       |         | 1              | STANDARD          | ROLE            | NULL              | NULL                             | NULL               |
+| 2026-09-11 07:58:21.993 -0700 | USER$BIJU1994         | N          | N          |                                                      |              |                                                                       |         | 1              | PERSONAL DATABASE |                 | NULL              | NULL                             | NULL               |
++-------------------------------+-----------------------+------------+------------+------------------------------------------------------+--------------+-----------------------------------------------------------------------+---------+----------------+-------------------+-----------------+-------------------+----------------------------------+--------------------+
+6 Row(s) produced. Time Elapsed: 0.312s
+BIJU1994#COMPUTE_WH@(no database).(no schema)>USE DATABASE SNOWSQL;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+1 Row(s) produced. Time Elapsed: 0.187s
+BIJU1994#COMPUTE_WH@SNOWSQL.PUBLIC>USE SCHEMA RAW_LAYER;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+1 Row(s) produced. Time Elapsed: 0.172s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE TABLE Employee(EID int,ENAMR VARCHAR);
++--------------------------------------+
+| status                               |
+|--------------------------------------|
+| Table EMPLOYEE successfully created. |
++--------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.672s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SHOW TABLES
+                                      ;
++-------------------------------+----------+---------------+-------------+-------+---------+------------+------+-------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+| created_on                    | name     | database_name | schema_name | kind  | comment | cluster_by | rows | bytes | owner        | retention_time | automatic_clustering | change_tracking | search_optimization | search_optimization_progress | search_optimization_bytes | is_external | enable_schema_evolution | owner_role_type | is_event | is_hybrid | is_iceberg | is_dynamic | is_immutable | is_interactive | row_timestamp | error_logging |
+|-------------------------------+----------+---------------+-------------+-------+---------+------------+------+-------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------|
+| 2026-09-20 02:02:05.588 -0700 | EMPLOYEE | SNOWSQL       | RAW_LAYER   | TABLE |         |            |    0 |     0 | ACCOUNTADMIN | 1              | OFF                  | OFF             | OFF                 |                         NULL |                      NULL | N           | N                       | ROLE            | N        | N         | N          | N          | N            | N              | OFF           | OFF           |
++-------------------------------+----------+---------------+-------------+-------+---------+------------+------+-------+--------------+----------------+----------------------+-----------------+---------------------+------------------------------+---------------------------+-------------+-------------------------+-----------------+----------+-----------+------------+------------+--------------+----------------+---------------+---------------+
+1 Row(s) produced. Time Elapsed: 0.814s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE FILE FORMAT CSV_TYPE
+                                      TYPE = CSV
+                                      SKIP_HEADER = 1;
++--------------------------------------------+
+| status                                     |
+|--------------------------------------------|
+| File format CSV_TYPE successfully created. |
++--------------------------------------------+
+1 Row(s) produced. Time Elapsed: 1.002s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE or REPLACE STAGE CSV_STAGE
+                                      File_FORMAT = CSV_TYPE;
++--------------------------------------------+
+| status                                     |
+|--------------------------------------------|
+| Stage area CSV_STAGE successfully created. |
++--------------------------------------------+
+1 Row(s) produced. Time Elapsed: 1.565s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>show STAGES;
++-------------------------------+-----------+---------------+-------------+-----+-----------------+--------------------+--------------+---------+--------+----------+-------+----------------------+---------------------+----------+-----------------+-------------------+
+| created_on                    | name      | database_name | schema_name | url | has_credentials | has_encryption_key | owner        | comment | region | type     | cloud | notification_channel | storage_integration | endpoint | owner_role_type | directory_enabled |
+|-------------------------------+-----------+---------------+-------------+-----+-----------------+--------------------+--------------+---------+--------+----------+-------+----------------------+---------------------+----------+-----------------+-------------------|
+| 2026-09-20 02:15:13.388 -0700 | CSV_STAGE | SNOWSQL       | RAW_LAYER   |     | N               | N                  | ACCOUNTADMIN |         | NULL   | INTERNAL | NULL  | NULL                 | NULL                | NULL     | ROLE            | N                 |
++-------------------------------+-----------+---------------+-------------+-----+-----------------+--------------------+--------------+---------+--------+----------+-------+----------------------+---------------------+----------+-----------------+-------------------+
+1 Row(s) produced. Time Elapsed: 0.192s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list CSV_STAGE;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 5 unexpected 'CSV_STAGE'.
+syntax error line 1 at position 14 unexpected ';'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @CSV_STAGE;
++------+------+-----+---------------+
+| name | size | md5 | last_modified |
+|------+------+-----+---------------|
++------+------+-----+---------------+
+0 Row(s) produced. Time Elapsed: 0.172s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put FILE E:\CSVFiles\SampleData.csv @CSV_STAGE;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 4 unexpected 'FILE'.
+parse error line 1 at position 21 near '83'.
+syntax error line 1 at position 31 unexpected '.'.
+syntax error line 1 at position 36 unexpected '@CSV_STAGE'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put FILE://E:\CSVFiles\SampleData.csv @CSV_STAGE;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 4 unexpected 'FILE'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put file://E:\CSVFiles\SampleData.csv @CSV_STAGE;
++----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+| source         | target            | source_size | target_size | source_compression | target_compression | status   | message |
+|----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------|
+| SampleData.csv | SampleData.csv.gz |        2131 |         784 | NONE               | GZIP               | UPLOADED |         |
++----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+1 Row(s) produced. Time Elapsed: 1.831s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++-----------------------------+------+----------------------------------+-------------------------------+
+| name                        | size | md5                              | last_modified                 |
+|-----------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/SampleData.csv.gz |  784 | f10455b7f38d143fed9488810239c12c | Sun, 20 Sep 2026 09:22:52 GMT |
++-----------------------------+------+----------------------------------+-------------------------------+
+1 Row(s) produced. Time Elapsed: 0.266s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put file://E:\CSVFiles\SampleData.csv @CSV_STAGE;
++----------------+-------------------+-------------+-------------+--------------------+--------------------+---------+---------+
+| source         | target            | source_size | target_size | source_compression | target_compression | status  | message |
+|----------------+-------------------+-------------+-------------+--------------------+--------------------+---------+---------|
+| SampleData.csv | SampleData.csv.gz |        2014 |           0 | NONE               | GZIP               | SKIPPED |         |
++----------------+-------------------+-------------+-------------+--------------------+--------------------+---------+---------+
+1 Row(s) produced. Time Elapsed: 0.362s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put file://E:\CSVFiles\SampleData.csv @CSV_STAGE OVERWRITE = TRUE;
++----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+| source         | target            | source_size | target_size | source_compression | target_compression | status   | message |
+|----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------|
+| SampleData.csv | SampleData.csv.gz |        2014 |         752 | NONE               | GZIP               | UPLOADED |         |
++----------------+-------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+1 Row(s) produced. Time Elapsed: 0.861s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put file://E:\CSVFiles\customers-100.csv @CSV_STAGE;
++-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+| source            | target               | source_size | target_size | source_compression | target_compression | status   | message |
+|-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------|
+| customers-100.csv | customers-100.csv.gz |       17261 |        9456 | NONE               | GZIP               | UPLOADED |         |
++-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+1 Row(s) produced. Time Elapsed: 4.242s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++--------------------------------+------+----------------------------------+-------------------------------+
+| name                           | size | md5                              | last_modified                 |
+|--------------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/SampleData.csv.gz    |  752 | 5fefbcbe8ef9cf10a1e85e868eec01ec | Sun, 20 Sep 2026 09:24:16 GMT |
+| csv_stage/customers-100.csv.gz | 9456 | 0179f667dce4839046c72e334bfae3df | Sun, 20 Sep 2026 09:27:33 GMT |
++--------------------------------+------+----------------------------------+-------------------------------+
+2 Row(s) produced. Time Elapsed: 0.734s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4 FROM @CSV_STAGE limit 10;
++----+-----------------+----------+-----------+
+| $1 | $2              | $3       | $4        |
+|----+-----------------+----------+-----------|
+| 1  | DD37Cf93aecA6Dc | Sheryl   | Baxter    |
+| 2  | 1Ef7b82A4CAAD10 | Preston  | Lozano    |
+| 3  | 6F94879bDAfE5a6 | Roy      | Berry     |
+| 4  | 5Cef8BFA16c5e3c | Linda    | Olsen     |
+| 5  | 053d585Ab6b3159 | Joanna   | Bender    |
+| 6  | 2d08FB17EE273F4 | Aimee    | Downs     |
+| 7  | EA4d384DfDbBf77 | Darren   | Peck      |
+| 8  | 0e04AFde9f225dE | Brett    | Mullen    |
+| 9  | C2dE4dEEc489ae0 | Sheryl   | Meyers    |
+| 10 | 8C2811a503C7c5a | Michelle | Gallagher |
++----+-----------------+----------+-----------+
+10 Row(s) produced. Time Elapsed: 2.851s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4 FROM @CSV_STAGE limit 10 WHERE name = 'SampleData.csv';
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 44 unexpected 'WHERE'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4 FROM @CSV_STAGE\SampleData.csv.gz limit 10;
+002003 (02000): SQL compilation error:
+Database '"CSV_STAGE\SAMPLEDATA"' does not exist or not authorized.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4 FROM @CSV_STAGE/SampleData.csv.gz limit 10;
++-----------+---------+----------+--------+
+| $1        | $2      | $3       | $4     |
+|-----------+---------+----------+--------|
+| 1/6/2024  | East    | Jones    | Pencil |
+| 1/23/2024 | Central | Kivell   | Binder |
+| 2/9/2024  | Central | Jardine  | Pencil |
+| 2/26/2024 | Central | Gill     | Pen    |
+| 3/15/2024 | West    | Sorvino  | Pencil |
+| 4/1/2024  | East    | Jones    | Binder |
+| 4/18/2024 | Central | Andrews  | Pencil |
+| 5/5/2024  | Central | Jardine  | Pencil |
+| 5/22/2024 | West    | Thompson | Pencil |
+| 6/8/2024  | East    | Jones    | Binder |
++-----------+---------+----------+--------+
+10 Row(s) produced. Time Elapsed: 1.516s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>put file://E:\CSVFiles\*.csv @CSV_STAGE;
++-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+| source            | target               | source_size | target_size | source_compression | target_compression | status   | message |
+|-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------|
+| SampleData.csv    | SampleData.csv.gz    |        2014 |           0 | NONE               | GZIP               | SKIPPED  |         |
+| customers-100.csv | customers-100.csv.gz |       17261 |           0 | NONE               | GZIP               | SKIPPED  |         |
+| leads-100.csv     | leads-100.csv.gz     |       18638 |       10624 | NONE               | GZIP               | UPLOADED |         |
+| products-100.csv  | products-100.csv.gz  |       15680 |        7488 | NONE               | GZIP               | UPLOADED |         |
++-------------------+----------------------+-------------+-------------+--------------------+--------------------+----------+---------+
+4 Row(s) produced. Time Elapsed: 4.854s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++--------------------------------+-------+----------------------------------+-------------------------------+
+| name                           |  size | md5                              | last_modified                 |
+|--------------------------------+-------+----------------------------------+-------------------------------|
+| csv_stage/SampleData.csv.gz    |   752 | 5fefbcbe8ef9cf10a1e85e868eec01ec | Sun, 20 Sep 2026 09:24:16 GMT |
+| csv_stage/customers-100.csv.gz |  9456 | 0179f667dce4839046c72e334bfae3df | Sun, 20 Sep 2026 09:27:33 GMT |
+| csv_stage/leads-100.csv.gz     | 10624 | a6f4555c1637fbdf9189ae9846931894 | Sun, 20 Sep 2026 09:47:20 GMT |
+| csv_stage/products-100.csv.gz  |  7488 | f01103ea24eb8935450ab1d0ace90394 | Sun, 20 Sep 2026 09:47:20 GMT |
++--------------------------------+-------+----------------------------------+-------------------------------+
+4 Row(s) produced. Time Elapsed: 0.344s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>REMOVE @Csv_stage/leads-100.csv.gz;
++----------------------------+---------+
+| name                       | result  |
+|----------------------------+---------|
+| csv_stage/leads-100.csv.gz | removed |
++----------------------------+---------+
+1 Row(s) produced. Time Elapsed: 0.361s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++--------------------------------+------+----------------------------------+-------------------------------+
+| name                           | size | md5                              | last_modified                 |
+|--------------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/SampleData.csv.gz    |  752 | 5fefbcbe8ef9cf10a1e85e868eec01ec | Sun, 20 Sep 2026 09:24:16 GMT |
+| csv_stage/customers-100.csv.gz | 9456 | 0179f667dce4839046c72e334bfae3df | Sun, 20 Sep 2026 09:27:33 GMT |
+| csv_stage/products-100.csv.gz  | 7488 | f01103ea24eb8935450ab1d0ace90394 | Sun, 20 Sep 2026 09:47:20 GMT |
++--------------------------------+------+----------------------------------+-------------------------------+
+3 Row(s) produced. Time Elapsed: 0.515s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4 FROM @CSV_STAGE/customers-100.csv.gz limit 10;
++----+-----------------+----------+-----------+
+| $1 | $2              | $3       | $4        |
+|----+-----------------+----------+-----------|
+| 1  | DD37Cf93aecA6Dc | Sheryl   | Baxter    |
+| 2  | 1Ef7b82A4CAAD10 | Preston  | Lozano    |
+| 3  | 6F94879bDAfE5a6 | Roy      | Berry     |
+| 4  | 5Cef8BFA16c5e3c | Linda    | Olsen     |
+| 5  | 053d585Ab6b3159 | Joanna   | Bender    |
+| 6  | 2d08FB17EE273F4 | Aimee    | Downs     |
+| 7  | EA4d384DfDbBf77 | Darren   | Peck      |
+| 8  | 0e04AFde9f225dE | Brett    | Mullen    |
+| 9  | C2dE4dEEc489ae0 | Sheryl   | Meyers    |
+| 10 | 8C2811a503C7c5a | Michelle | Gallagher |
++----+-----------------+----------+-----------+
+10 Row(s) produced. Time Elapsed: 0.954s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,CONCAT($3,$4) as FullName FROM @CSV_STAGE/customers-100.csv.gz limit 10;
++----+-----------------+-------------------+
+| $1 | $2              | FULLNAME          |
+|----+-----------------+-------------------|
+| 1  | DD37Cf93aecA6Dc | SherylBaxter      |
+| 2  | 1Ef7b82A4CAAD10 | PrestonLozano     |
+| 3  | 6F94879bDAfE5a6 | RoyBerry          |
+| 4  | 5Cef8BFA16c5e3c | LindaOlsen        |
+| 5  | 053d585Ab6b3159 | JoannaBender      |
+| 6  | 2d08FB17EE273F4 | AimeeDowns        |
+| 7  | EA4d384DfDbBf77 | DarrenPeck        |
+| 8  | 0e04AFde9f225dE | BrettMullen       |
+| 9  | C2dE4dEEc489ae0 | SherylMeyers      |
+| 10 | 8C2811a503C7c5a | MichelleGallagher |
++----+-----------------+-------------------+
+10 Row(s) produced. Time Elapsed: 1.149s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,CONCAT($3,' ',$4) as FullName FROM @CSV_STAGE/customers-100.csv.gz limit 10;
++----+-----------------+--------------------+
+| $1 | $2              | FULLNAME           |
+|----+-----------------+--------------------|
+| 1  | DD37Cf93aecA6Dc | Sheryl Baxter      |
+| 2  | 1Ef7b82A4CAAD10 | Preston Lozano     |
+| 3  | 6F94879bDAfE5a6 | Roy Berry          |
+| 4  | 5Cef8BFA16c5e3c | Linda Olsen        |
+| 5  | 053d585Ab6b3159 | Joanna Bender      |
+| 6  | 2d08FB17EE273F4 | Aimee Downs        |
+| 7  | EA4d384DfDbBf77 | Darren Peck        |
+| 8  | 0e04AFde9f225dE | Brett Mullen       |
+| 9  | C2dE4dEEc489ae0 | Sheryl Meyers      |
+| 10 | 8C2811a503C7c5a | Michelle Gallagher |
++----+-----------------+--------------------+
+10 Row(s) produced. Time Elapsed: 1.337s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4,$5,$6,$7 FROM @CSV_STAGE/SampleData.csv.gz limit 20;
++------------+---------+----------+---------+-----+-------+---------+
+| $1         | $2      | $3       | $4      | $5  | $6    | $7      |
+|------------+---------+----------+---------+-----+-------+---------|
+| 1/6/2024   | East    | Jones    | Pencil  | 100 | 1.99  | 189.05  |
+| 1/23/2024  | Central | Kivell   | Binder  | 50  | 19.99 | 999.5   |
+| 2/9/2024   | Central | Jardine  | Pencil  | 36  | 4.99  | 179.64  |
+| 2/26/2024  | Central | Gill     | Pen     | 27  | 19.99 | 539.73  |
+| 3/15/2024  | West    | Sorvino  | Pencil  | 56  | 2.99  | 167.44  |
+| 4/1/2024   | East    | Jones    | Binder  | 60  | 4.99  | 299.4   |
+| 4/18/2024  | Central | Andrews  | Pencil  | 75  | 1.99  | 149.25  |
+| 5/5/2024   | Central | Jardine  | Pencil  | 90  | 4.99  | 449.1   |
+| 5/22/2024  | West    | Thompson | Pencil  | 32  | 1.99  | 63.68   |
+| 6/8/2024   | East    | Jones    | Binder  | 60  | 8.99  | 539.4   |
+| 6/25/2024  | Central | Morgan   | Pencil  | 90  | 4.99  | 449.1   |
+| 7/12/2024  | East    | Howard   | Binder  | 29  | 1.99  | 57.71   |
+| 7/29/2024  | East    | Parent   | Binder  | 81  | 19.99 | 1619.19 |
+| 8/15/2024  | East    | Jones    | Pencil  | 35  | 4.99  | 174.65  |
+| 9/1/2024   | Central | Smith    | Desk    | 2   | 125   | 250     |
+| 9/18/2024  | East    | Jones    | Pen Set | 16  | 15.99 | 255.84  |
+| 10/5/2024  | Central | Morgan   | Binder  | 28  | 8.99  | 251.72  |
+| 10/22/2024 | East    | Jones    | Pen     | 64  | 8.99  | 575.36  |
+| 11/8/2024  | East    | Parent   | Pen     | 15  | 19.99 | 299.85  |
+| 11/25/2024 | Central | Kivell   | Pen Set | 96  | 4.99  | 479.04  |
++------------+---------+----------+---------+-----+-------+---------+
+20 Row(s) produced. Time Elapsed: 0.438s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $1,$2,$3,$4,$5,$6,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $4
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
+001104 (42601): SQL compilation error: error line 1 at position 7
+'STAGE.$1' in select clause is neither an aggregate nor in the group by clause.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3,$4,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
++----------+---------+------------+
+| $3       | $4      | TOTAL_COST |
+|----------+---------+------------|
+| Howard   | Binder  |      57.71 |
+| Thompson | Pencil  |      63.68 |
+| Gill     | Pencil  |      77.4  |
+| Smith    | Pencil  |      86.43 |
+| Andrews  | Binder  |     139.72 |
+| Sorvino  | Binder  |     139.93 |
+| Sorvino  | Pen     |     151.24 |
+| Sorvino  | Pencil  |     167.44 |
+| Jardine  | Pen Set |     249.5  |
+| Smith    | Desk    |     250    |
+| Morgan   | Binder  |     251.72 |
+| Andrews  | Pencil  |     298.65 |
+| Parent   | Pen     |     299.85 |
+| Jones    | Pencil  |     363.7  |
+| Morgan   | Pencil  |     449.1  |
+| Howard   | Pen     |     479.04 |
+| Gill     | Pen     |     539.73 |
+| Jones    | Pen Set |     565.22 |
+| Jones    | Pen     |     575.36 |
+| Kivell   | Desk    |     625    |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.591s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
++----------+---------+------------+
+| NAME     | ITEMS   | TOTAL_COST |
+|----------+---------+------------|
+| Howard   | Binder  |      57.71 |
+| Thompson | Pencil  |      63.68 |
+| Gill     | Pencil  |      77.4  |
+| Smith    | Pencil  |      86.43 |
+| Andrews  | Binder  |     139.72 |
+| Sorvino  | Binder  |     139.93 |
+| Sorvino  | Pen     |     151.24 |
+| Sorvino  | Pencil  |     167.44 |
+| Jardine  | Pen Set |     249.5  |
+| Smith    | Desk    |     250    |
+| Morgan   | Binder  |     251.72 |
+| Andrews  | Pencil  |     298.65 |
+| Parent   | Pen     |     299.85 |
+| Jones    | Pencil  |     363.7  |
+| Morgan   | Pencil  |     449.1  |
+| Howard   | Pen     |     479.04 |
+| Gill     | Pen     |     539.73 |
+| Jones    | Pen Set |     565.22 |
+| Jones    | Pen     |     575.36 |
+| Kivell   | Desk    |     625    |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.790s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
++----------+---------+------------+
+| NAME     | ITEMS   | TOTAL_COST |
+|----------+---------+------------|
+| Howard   | Binder  |      57.71 |
+| Thompson | Pencil  |      63.68 |
+| Gill     | Pencil  |      77.4  |
+| Smith    | Pencil  |      86.43 |
+| Andrews  | Binder  |     139.72 |
+| Sorvino  | Binder  |     139.93 |
+| Sorvino  | Pen     |     151.24 |
+| Sorvino  | Pencil  |     167.44 |
+| Jardine  | Pen Set |     249.5  |
+| Smith    | Desk    |     250    |
+| Morgan   | Binder  |     251.72 |
+| Andrews  | Pencil  |     298.65 |
+| Parent   | Pen     |     299.85 |
+| Jones    | Pencil  |     363.7  |
+| Morgan   | Pencil  |     449.1  |
+| Howard   | Pen     |     479.04 |
+| Gill     | Pen     |     539.73 |
+| Jones    | Pen Set |     565.22 |
+| Jones    | Pen     |     575.36 |
+| Kivell   | Desk    |     625    |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.546s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
++----------+---------+------------+
+| NAME     | ITEMS   | TOTAL_COST |
+|----------+---------+------------|
+| Howard   | Binder  |      57.71 |
+| Thompson | Pencil  |      63.68 |
+| Gill     | Pencil  |      77.4  |
+| Smith    | Pencil  |      86.43 |
+| Andrews  | Binder  |     139.72 |
+| Sorvino  | Binder  |     139.93 |
+| Sorvino  | Pen     |     151.24 |
+| Sorvino  | Pencil  |     167.44 |
+| Jardine  | Pen Set |     249.5  |
+| Smith    | Desk    |     250    |
+| Morgan   | Binder  |     251.72 |
+| Andrews  | Pencil  |     298.65 |
+| Parent   | Pen     |     299.85 |
+| Jones    | Pencil  |     363.7  |
+| Morgan   | Pencil  |     449.1  |
+| Howard   | Pen     |     479.04 |
+| Gill     | Pen     |     539.73 |
+| Jones    | Pen Set |     565.22 |
+| Jones    | Pen     |     575.36 |
+| Kivell   | Desk    |     625    |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.331s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      HAVING sum($7) > = 250
+                                      ORDER BY Total_Cost DESC
+                                      LIMIT 20;
+001003 (42000): SQL compilation error:
+syntax error line 3 at position 17 unexpected '='.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      HAVING sum($7) >= 250
+                                      ORDER BY Total_Cost DESC
+                                      LIMIT 20;
++----------+---------+------------+
+| NAME     | ITEMS   | TOTAL_COST |
+|----------+---------+------------|
+| Jardine  | Binder  |    1933.95 |
+| Parent   | Binder  |    1619.19 |
+| Kivell   | Pen Set |    1484.94 |
+| Smith    | Binder  |    1305    |
+| Parent   | Pen Set |    1183.26 |
+| Thompson | Binder  |    1139.43 |
+| Gill     | Binder  |    1132.74 |
+| Kivell   | Binder  |     999.5  |
+| Jones    | Binder  |     858.76 |
+| Sorvino  | Desk    |     825    |
+| Morgan   | Pen Set |     686.95 |
+| Jardine  | Pencil  |     628.74 |
+| Kivell   | Desk    |     625    |
+| Jones    | Pen     |     575.36 |
+| Jones    | Pen Set |     565.22 |
+| Gill     | Pen     |     539.73 |
+| Howard   | Pen     |     479.04 |
+| Morgan   | Pencil  |     449.1  |
+| Jones    | Pencil  |     363.7  |
+| Parent   | Pen     |     299.85 |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.361s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT $3 Name,$4 Items,sum($7) Total_Cost FROM @CSV_STAGE/SampleData.csv.gz
+                                      GROUP by $3,$4
+                                      HAVING sum($7) >= 250
+                                      ORDER BY Total_Cost
+                                      LIMIT 20;
++----------+---------+------------+
+| NAME     | ITEMS   | TOTAL_COST |
+|----------+---------+------------|
+| Smith    | Desk    |     250    |
+| Morgan   | Binder  |     251.72 |
+| Andrews  | Pencil  |     298.65 |
+| Parent   | Pen     |     299.85 |
+| Jones    | Pencil  |     363.7  |
+| Morgan   | Pencil  |     449.1  |
+| Howard   | Pen     |     479.04 |
+| Gill     | Pen     |     539.73 |
+| Jones    | Pen Set |     565.22 |
+| Jones    | Pen     |     575.36 |
+| Kivell   | Desk    |     625    |
+| Jardine  | Pencil  |     628.74 |
+| Morgan   | Pen Set |     686.95 |
+| Sorvino  | Desk    |     825    |
+| Jones    | Binder  |     858.76 |
+| Kivell   | Binder  |     999.5  |
+| Gill     | Binder  |    1132.74 |
+| Thompson | Binder  |    1139.43 |
+| Parent   | Pen Set |    1183.26 |
+| Smith    | Binder  |    1305    |
++----------+---------+------------+
+20 Row(s) produced. Time Elapsed: 0.877s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE or REPLACE TABLE Order(
+                                      OrderDate DATE, )
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 24 unexpected 'Order'.
+syntax error line 2 at position 16 unexpected ')'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE or REPLACE TABLE Order(
+                                      OrderDate DATE,
+                                      Region VARCHAR,
+                                      Rep VARCHAR,
+                                      Item VARCHAR,
+                                      Units int,
+                                      Unit_Cost DECIMAL(10,2),
+                                      Total DECIMAL(10,2)
+                                      );
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 24 unexpected 'Order'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE TABLE Order(
+                                      OrderDate DATE,
+                                      Region VARCHAR,
+                                      Rep VARCHAR,
+                                      Item VARCHAR,
+                                      Units int,
+                                      Unit_Cost DECIMAL(10,2),
+                                      Total DECIMAL(10,2)
+                                      );
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 13 unexpected 'Order'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE TABLE Order_Details(
+                                      OrderDate DATE,
+                                      Region VARCHAR,
+                                      Rep VARCHAR,
+                                      Item VARCHAR,
+                                      Units int,
+                                      Unit_Cost DECIMAL(10,2),
+                                      Total DECIMAL(10,2)
+                                      );
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table ORDER_DETAILS successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.426s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT * FROM ORDER_DETAILS;
++-----------+--------+-----+------+-------+-----------+-------+
+| ORDERDATE | REGION | REP | ITEM | UNITS | UNIT_COST | TOTAL |
+|-----------+--------+-----+------+-------+-----------+-------|
++-----------+--------+-----+------+-------+-----------+-------+
+0 Row(s) produced. Time Elapsed: 0.219s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz;
++---------------------------------------+
+| status                                |
+|---------------------------------------|
+| Copy executed with 0 files processed. |
++---------------------------------------+
+1 Row(s) produced. Time Elapsed: 4.229s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>SELECT * FROM ORDER_DETAILS;
++-----------+--------+-----+------+-------+-----------+-------+
+| ORDERDATE | REGION | REP | ITEM | UNITS | UNIT_COST | TOTAL |
+|-----------+--------+-----+------+-------+-----------+-------|
++-----------+--------+-----+------+-------+-----------+-------+
+0 Row(s) produced. Time Elapsed: 1.156s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>snowsql -q COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 0 unexpected 'snowsql'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>snowsql -q "COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz";
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 0 unexpected 'snowsql'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>snowsql -q "COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz FILE_FORMAT=(TYPE='CSV' SKIP_HEADER=1);";
+
+
+
+
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 0 unexpected 'snowsql'.
+
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>snowsql -q "COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz FILE_FORMAT=(TYPE='CSV' SKIP_HEADER=1)";
+
+
+
+
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 0 unexpected 'snowsql'.
+
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into ORDER_DETAILS
+                                      FROM @csv_stage/Sampledata.csv.gz FILE_FORMAT=(TYPE=CSV SKIP_HEADER=1);
+
+
+
+
++---------------------------------------+
+| status                                |
+|---------------------------------------|
+| Copy executed with 0 files processed. |
++---------------------------------------+
+1 Row(s) produced. Time Elapsed: 2.353s
+
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE STAGE @New_Stage;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 13 unexpected '@New_Stage'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>CREATE STAGE New_Stage;
++--------------------------------------------+
+| status                                     |
+|--------------------------------------------|
+| Stage area NEW_STAGE successfully created. |
++--------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.310s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>DESC @New_Stage;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 0 unexpected 'DESC'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>DESC STAGE @New_Stage;
+001003 (42000): SQL compilation error:
+syntax error line 1 at position 11 unexpected '@New_Stage'.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>DESC STAGE New_Stage;
++--------------------+--------------------------------+---------------+-----------------+------------------+
+| parent_property    | property                       | property_type | property_value  | property_default |
+|--------------------+--------------------------------+---------------+-----------------+------------------|
+| STAGE_FILE_FORMAT  | TYPE                           | String        | CSV             | CSV              |
+| STAGE_FILE_FORMAT  | RECORD_DELIMITER               | String        | \n              | \n               |
+| STAGE_FILE_FORMAT  | FIELD_DELIMITER                | String        | ,               | ,                |
+| STAGE_FILE_FORMAT  | FILE_EXTENSION                 | String        |                 |                  |
+| STAGE_FILE_FORMAT  | SKIP_HEADER                    | Integer       | 0               | 0                |
+| STAGE_FILE_FORMAT  | PARSE_HEADER                   | Boolean       | false           | false            |
+| STAGE_FILE_FORMAT  | DATE_FORMAT                    | String        | AUTO            | AUTO             |
+| STAGE_FILE_FORMAT  | TIME_FORMAT                    | String        | AUTO            | AUTO             |
+| STAGE_FILE_FORMAT  | TIMESTAMP_FORMAT               | String        | AUTO            | AUTO             |
+| STAGE_FILE_FORMAT  | BINARY_FORMAT                  | String        | HEX             | HEX              |
+| STAGE_FILE_FORMAT  | ESCAPE                         | String        | NONE            | NONE             |
+| STAGE_FILE_FORMAT  | ESCAPE_UNENCLOSED_FIELD        | String        | \\              | \\               |
+| STAGE_FILE_FORMAT  | TRIM_SPACE                     | Boolean       | false           | false            |
+| STAGE_FILE_FORMAT  | FIELD_OPTIONALLY_ENCLOSED_BY   | String        | NONE            | NONE             |
+| STAGE_FILE_FORMAT  | NULL_IF                        | List          | [\\N]           | [\\N]            |
+| STAGE_FILE_FORMAT  | COMPRESSION                    | String        | AUTO            | AUTO             |
+| STAGE_FILE_FORMAT  | ERROR_ON_COLUMN_COUNT_MISMATCH | Boolean       | true            | true             |
+| STAGE_FILE_FORMAT  | VALIDATE_UTF8                  | Boolean       | true            | true             |
+| STAGE_FILE_FORMAT  | SKIP_BLANK_LINES               | Boolean       | false           | false            |
+| STAGE_FILE_FORMAT  | REPLACE_INVALID_CHARACTERS     | Boolean       | false           | false            |
+| STAGE_FILE_FORMAT  | EMPTY_FIELD_AS_NULL            | Boolean       | true            | true             |
+| STAGE_FILE_FORMAT  | SKIP_BYTE_ORDER_MARK           | Boolean       | true            | true             |
+| STAGE_FILE_FORMAT  | ENCODING                       | String        | UTF8            | UTF8             |
+| STAGE_FILE_FORMAT  | MULTI_LINE                     | Boolean       | true            | true             |
+| STAGE_COPY_OPTIONS | ON_ERROR                       | String        | ABORT_STATEMENT | ABORT_STATEMENT  |
+| STAGE_COPY_OPTIONS | SIZE_LIMIT                     | Long          |                 |                  |
+| STAGE_COPY_OPTIONS | PURGE                          | Boolean       | false           | false            |
+| STAGE_COPY_OPTIONS | RETURN_FAILED_ONLY             | Boolean       | false           | false            |
+| STAGE_COPY_OPTIONS | ENFORCE_LENGTH                 | Boolean       | true            | true             |
+| STAGE_COPY_OPTIONS | TRUNCATECOLUMNS                | Boolean       | false           | false            |
+| STAGE_COPY_OPTIONS | FORCE                          | Boolean       | false           | false            |
+| STAGE_LOCATION     | URL                            | String        |                 |                  |
+| DIRECTORY          | ENABLE                         | Boolean       | false           | false            |
++--------------------+--------------------------------+---------------+-----------------+------------------+
+33 Row(s) produced. Time Elapsed: 0.179s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY files INTO @New_Stage FROM @Csv_Stage;
++----------------------+
+| file                 |
+|----------------------|
+| SampleData.csv.gz    |
+| customers-100.csv.gz |
+| products-100.csv.gz  |
++----------------------+
+3 Row(s) produced. Time Elapsed: 1.299s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @New_Stage;
++--------------------------------+------+----------------------------------+-------------------------------+
+| name                           | size | md5                              | last_modified                 |
+|--------------------------------+------+----------------------------------+-------------------------------|
+| new_stage/SampleData.csv.gz    |  752 | 3159947a2c73f177bd573f8cd18247cf | Sun, 20 Sep 2026 11:17:02 GMT |
+| new_stage/customers-100.csv.gz | 9456 | af1e744dca20e5db0c0a190e2a1c6406 | Sun, 20 Sep 2026 11:17:02 GMT |
+| new_stage/products-100.csv.gz  | 7488 | e459111084583820229f5a405832b3b0 | Sun, 20 Sep 2026 11:17:02 GMT |
++--------------------------------+------+----------------------------------+-------------------------------+
+3 Row(s) produced. Time Elapsed: 0.779s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_Stage;
++--------------------------------+------+----------------------------------+-------------------------------+
+| name                           | size | md5                              | last_modified                 |
+|--------------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/SampleData.csv.gz    |  752 | 5fefbcbe8ef9cf10a1e85e868eec01ec | Sun, 20 Sep 2026 09:24:16 GMT |
+| csv_stage/customers-100.csv.gz | 9456 | 0179f667dce4839046c72e334bfae3df | Sun, 20 Sep 2026 09:27:33 GMT |
+| csv_stage/products-100.csv.gz  | 7488 | f01103ea24eb8935450ab1d0ace90394 | Sun, 20 Sep 2026 09:47:20 GMT |
++--------------------------------+------+----------------------------------+-------------------------------+
+3 Row(s) produced. Time Elapsed: 0.222s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>REMOVE @csv_stage;
++--------------------------------+---------+
+| name                           | result  |
+|--------------------------------+---------|
+| csv_stage/products-100.csv.gz  | removed |
+| csv_stage/SampleData.csv.gz    | removed |
+| csv_stage/customers-100.csv.gz | removed |
++--------------------------------+---------+
+3 Row(s) produced. Time Elapsed: 0.255s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++------+------+-----+---------------+
+| name | size | md5 | last_modified |
+|------+------+-----+---------------|
++------+------+-----+---------------+
+0 Row(s) produced. Time Elapsed: 0.234s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into @csv_stage from Demoprojectdata.Raw_Data.Jsondata;
++---------------+-------------+--------------+
+| rows_unloaded | input_bytes | output_bytes |
+|---------------+-------------+--------------|
+|             1 |        3455 |         1177 |
++---------------+-------------+--------------+
+1 Row(s) produced. Time Elapsed: 2.322s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++-----------------------------+------+----------------------------------+-------------------------------+
+| name                        | size | md5                              | last_modified                 |
+|-----------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/data_0_0_0.csv.gz | 1184 | 792077143b8d40c8b51b9a8baa17cb1e | Sun, 20 Sep 2026 11:23:25 GMT |
++-----------------------------+------+----------------------------------+-------------------------------+
+1 Row(s) produced. Time Elapsed: 0.219s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>select $1 from @csv_stage;
++----+
+| $1 |
+|----|
++----+
+0 Row(s) produced. Time Elapsed: 0.970s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into @csv_stage from Demoprojectdata.Raw_Data.vw_jsondata;
+001030 (22000): Files already existing at the unload destination: @csv_stage. Use overwrite option to force unloading.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>REMOVE @csv_stage;
++-----------------------------+---------+
+| name                        | result  |
+|-----------------------------+---------|
+| csv_stage/data_0_0_0.csv.gz | removed |
++-----------------------------+---------+
+1 Row(s) produced. Time Elapsed: 0.266s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into @csv_stage from Demoprojectdata.Raw_Data.vw_jsondata;
++---------------+-------------+--------------+
+| rows_unloaded | input_bytes | output_bytes |
+|---------------+-------------+--------------|
+|            30 |        1671 |          966 |
++---------------+-------------+--------------+
+1 Row(s) produced. Time Elapsed: 1.094s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>select $1 from @csv_stage;
++---------------+
+| $1            |
+|---------------|
+| Beijing       |
+| Dubai         |
+| Los Angeles   |
+| Tokyo         |
+| Chicago       |
+| London        |
+| Shanghai      |
+| Paris         |
+| Dallas        |
+| Guangzhou     |
+| Amsterdam     |
+| Frankfurt     |
+| Istanbul      |
+| Singapore     |
+| Seoul         |
+| Denver        |
+| Bangkok       |
+| New York      |
+| Hong Kong     |
+| Kuala Lumpur  |
+| Madrid        |
+| San Francisco |
+| Miami         |
+| Sydney        |
+| Munich        |
+| Barcelona     |
+| Toronto       |
+| Mexico City   |
+| Tokyo         |
++---------------+
+29 Row(s) produced. Time Elapsed: 0.344s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>select $1,$2,$3 from @csv_stage;
++---------------+-----+----+
+| $1            | $2  | $3 |
+|---------------+-----+----|
+| Beijing       | PEK | CN |
+| Dubai         | DXB | AE |
+| Los Angeles   | LAX | US |
+| Tokyo         | HND | JP |
+| Chicago       | ORD | US |
+| London        | LHR | GB |
+| Shanghai      | PVG | CN |
+| Paris         | CDG | FR |
+| Dallas        | DFW | US |
+| Guangzhou     | CAN | CN |
+| Amsterdam     | AMS | NL |
+| Frankfurt     | FRA | DE |
+| Istanbul      | IST | TR |
+| Singapore     | SIN | SG |
+| Seoul         | ICN | KR |
+| Denver        | DEN | US |
+| Bangkok       | BKK | TH |
+| New York      | JFK | US |
+| Hong Kong     | HKG | HK |
+| Kuala Lumpur  | KUL | MY |
+| Madrid        | MAD | ES |
+| San Francisco | SFO | US |
+| Miami         | MIA | US |
+| Sydney        | SYD | AU |
+| Munich        | MUC | DE |
+| Barcelona     | BCN | ES |
+| Toronto       | YYZ | CA |
+| Mexico City   | MEX | MX |
+| Tokyo         | NRT | JP |
++---------------+-----+----+
+29 Row(s) produced. Time Elapsed: 0.801s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++-----------------------------+------+----------------------------------+-------------------------------+
+| name                        | size | md5                              | last_modified                 |
+|-----------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/data_0_0_0.csv.gz |  976 | acd0ca9a74d4d290e833e81d0fdea4f7 | Sun, 20 Sep 2026 11:25:43 GMT |
++-----------------------------+------+----------------------------------+-------------------------------+
+1 Row(s) produced. Time Elapsed: 0.187s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>get @csv_stage file://E:\destination;
++-------------------+------+------------+---------+
+| file              | size | status     | message |
+|-------------------+------+------------+---------|
+| data_0_0_0.csv.gz |  966 | DOWNLOADED |         |
++-------------------+------+------------+---------+
+1 Row(s) produced. Time Elapsed: 1.769s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into @csv_stage from Demoprojectdata.Raw_Data.vw_xmldata;
+001030 (22000): Files already existing at the unload destination: @csv_stage. Use overwrite option to force unloading.
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>REMOVE @csv_stage;
++-----------------------------+---------+
+| name                        | result  |
+|-----------------------------+---------|
+| csv_stage/data_0_0_0.csv.gz | removed |
++-----------------------------+---------+
+1 Row(s) produced. Time Elapsed: 0.220s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>COPY into @csv_stage from Demoprojectdata.Raw_Data.vw_xmldata;
++---------------+-------------+--------------+
+| rows_unloaded | input_bytes | output_bytes |
+|---------------+-------------+--------------|
+|             2 |          47 |           67 |
++---------------+-------------+--------------+
+1 Row(s) produced. Time Elapsed: 1.082s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>list @csv_stage;
++-----------------------------+------+----------------------------------+-------------------------------+
+| name                        | size | md5                              | last_modified                 |
+|-----------------------------+------+----------------------------------+-------------------------------|
+| csv_stage/data_0_0_0.csv.gz |   80 | 3bb3a697118c7dfaf425ee085af8cadb | Sun, 20 Sep 2026 11:34:00 GMT |
++-----------------------------+------+----------------------------------+-------------------------------+
+1 Row(s) produced. Time Elapsed: 0.172s
+BIJU1994#COMPUTE_WH@SNOWSQL.RAW_LAYER>get @csv_stage file://E:\destination;
++-------------------+------+------------+---------+
+| file              | size | status     | message |
+|-------------------+------+------------+---------|
+| data_0_0_0.csv.gz |   67 | DOWNLOADED |         |
++-------------------+------+------------+---------+
+1 Row(s) produced. Time Elapsed: 1.221s
